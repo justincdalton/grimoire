@@ -1,0 +1,3 @@
+## Split up types of packages into separate directories
+
+When there are dozens of shared packages it gets confusing trying to differentiate the various types of packages. For example, grouping application entry points are in with shared packages can lead to unintended dependency trees where one application depends directly on another. Typically you do not want to inherit the entire dependency tree of one app in another. Instead you want to split the shared pieces out into a separate sharable package, keeping each individual app slim and optimized.

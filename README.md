@@ -1,1 +1,1 @@
-This is the grimoire of one Justin C. Dalton. Contained is research, ideas, resources, invocations, 
+This is the grimoire of one Justin C. Dalton. Contained is research, ideas, resources, invocations, and reviews.
