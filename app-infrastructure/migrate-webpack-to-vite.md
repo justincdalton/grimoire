@@ -43,6 +43,8 @@ Also depending on your `tsconfig` target you may need additional options in the 
 }
 ```
 
+*Note: Vite is using esbuild as of v3 which does not support targeting ES5. With IE11 going EOL on June 15, 2022 there is no real reason to target ES5 any longer.*
+
 ## Vite config
 There are several options you will likely need to add to the `vite.config` from the existing webpack config. Your should look like the one below if you are migrating a React app.
 
