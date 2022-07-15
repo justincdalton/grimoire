@@ -78,3 +78,5 @@ resolve: {
   "start": "vite"
 }
 ```
+
+## Some common migration issues
