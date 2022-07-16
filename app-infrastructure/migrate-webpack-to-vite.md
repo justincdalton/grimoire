@@ -84,6 +84,8 @@ resolve: {
 If your project is importing SVGs as React or Vue components you will need a plugin for this. For React the best option seems to be `vite-plugin-svgr` and for Vue `vite-plugin-svg`.
 
 ### Environment variables
-By default Vite provides it's own env object on `import.meta.env`, but many projects coming from webpack use `process.env` even in client side code. Fortunately there is a plugin for mapping env variables to `process.env` and making them available. Ideally you should either map specific envvars or specify a prefix.
+By default Vite provides it's own env object on `import.meta.env`, but many projects coming from webpack use `process.env` even in client side code. Fortunately there is a plugin for mapping env variables to `process.env` and making them available. Ideally you should either map specific envvars or specify a prefix. For example using `vite-plugin-environment` when migrating from CreateReactApp:
 
-
+```js
+environmentPlugin('all', 'REACT_APP_')
+```
