@@ -81,10 +81,7 @@ resolve: {
 }
 ```
 
-## Common (and uncommon) migration concerns
-### Using SVGs as components
-If your project is importing SVGs as React or Vue components you will need a plugin for this. For React the best option seems to be `vite-plugin-svgr` and for Vue `vite-plugin-svg`.
-
+## Useful plugins
 ### Environment variables
 By default Vite provides it's own env object on `import.meta.env`, but many projects coming from webpack use `process.env` even in client side code. Fortunately there is a plugin for mapping env variables to `process.env` and making them available. Ideally you should either map specific envvars or specify a prefix. For example using `vite-plugin-environment` when migrating from CreateReactApp:
 
@@ -93,7 +90,34 @@ environmentPlugin('all', 'REACT_APP_')
 ```
 
 ### Split up javascript bundle
-Vite does not do any code splitting by default which can lead to a single large javascript bundle. It does include a 
+Vite does not do any code splitting by default which can lead to a single large javascript bundle. It does include a useful plugin which will automatically split out the vendor javascript from the main bundle.
+
+```js
+import { defineConfig, splitVendorChunkPlugin } from "vite";
+
+export default defineConfig({
+  plugins: [react(), splitVendorChunkPlugin]
+});
+```
+
+### Runtime type checking
+Vite will run Typescript type checking at build time, but it does not provide runtime checking with the dev server. There are a number of plugin options which provide this and `vite-plugin-checker` has proven to be a useful one. The following example will configure it to run eslint and type checking:
+
+```js
+checkerPlugin({
+  eslint: {
+    lintCommand: 'eslint "src/**/*.ts{,x"'
+  },
+  typescript: true
+})
+```
+
+### Visualizer
+The visualizer is a useful tool for optimizing bundle sizes and examining the module dependency tree. The plugin can be added by installing `rollup-plugin-visualizer`.
+
+## Common (and uncommon) migration concerns
+### Using SVGs as components
+If your project is importing SVGs as React or Vue components you will need a plugin for this. For React the best option seems to be `vite-plugin-svgr` and for Vue `vite-plugin-svg`.
 
 ### Update CSS modules file names
 Vite recognizes CSS module files by including `.module` in the filename. For example, if you have a file named `colors.scss` which uses CSS module exports it will need to be renamed to `colors.module.scss`.
