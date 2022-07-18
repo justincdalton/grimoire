@@ -89,3 +89,6 @@ By default Vite provides it's own env object on `import.meta.env`, but many proj
 ```js
 environmentPlugin('all', 'REACT_APP_')
 ```
+
+### Update CSS modules file names
+Vite recognizes CSS module files by including `.module` in the filename. For example, if you have a file named `colors.scss` which uses CSS module exports it will need to be renamed to `colors.module.scss`.
