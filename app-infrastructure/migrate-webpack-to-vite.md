@@ -75,11 +75,13 @@ resolve: {
 ## Add Vite scripts to package.json
 ```json
 "scripts": {
-  "start": "vite"
+  "start": "vite",
+  "build": "vite build",
+  "preview": "vite preview --port 8080"
 }
 ```
 
-## Common (and uncommon) migration issues
+## Common (and uncommon) migration concerns
 ### Using SVGs as components
 If your project is importing SVGs as React or Vue components you will need a plugin for this. For React the best option seems to be `vite-plugin-svgr` and for Vue `vite-plugin-svg`.
 
@@ -90,5 +92,20 @@ By default Vite provides it's own env object on `import.meta.env`, but many proj
 environmentPlugin('all', 'REACT_APP_')
 ```
 
+### Split up javascript bundle
+Vite does not do any code splitting by default which can lead to a single large javascript bundle. It does include a 
+
 ### Update CSS modules file names
 Vite recognizes CSS module files by including `.module` in the filename. For example, if you have a file named `colors.scss` which uses CSS module exports it will need to be renamed to `colors.module.scss`.
+
+### Relative asset imports
+You may see issues where assets such as font faces imported with relative paths no longer load and instead throw 404 errors. If you see this problem you can alias the assets directory and change the import to use that instead.
+
+### Output directory
+By default Vite uses `dist` as the build output directory, but your existing project may be using a different one such as `build`. To change the directory add the following to the Vite config:
+
+```json
+build: {
+  outDir: 'build'
+}
+```
