@@ -1,3 +1,6 @@
+# Migrate webpack to vite
+Tags: [[tooling]]
+
 ## Scaffold a sample project
 In order to generate a basic Vite config and starting files it's helpful to set up a sample project to copy from. Follow the Vite guide to [scaffold](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) out a project with the framework your existing project is using.
 
